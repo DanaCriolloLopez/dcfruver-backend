@@ -28,7 +28,8 @@ const PedidoDetalle = sequelize.define('pedidodetalle', {
     }
     }, 
     {
-    timestamps: false
+        tableName: 'pedidodetalle' ,
+        timestamps: false
     }
     );
 

@@ -25,7 +25,8 @@ const Clientes = sequelize.define('clientes', {
     }
     }, 
     {
-    timestamps: false
+        tableName: 'clientes' ,
+        timestamps: false
     }
     );
 
