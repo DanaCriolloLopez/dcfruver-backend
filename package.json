@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Taller Unidad 2 Backend",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon server.js"
   },
