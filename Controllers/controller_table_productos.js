@@ -9,6 +9,16 @@ const getProductos = async (req, res) => {
     }
 }
 
+const getProducto = async (req, res) => {
+    const { idproducto } = req.params;
+    try {
+        const producto = await Productos.findByPk(idproducto);    
+        res.status(200).json([producto]);    
+    } catch (error) {
+        res.status(400).json({mensaje: err});
+    }
+}
+
 const postProductos = async (req, res) => {
     const {nomproducto, categoriaproducto, descripcionproducto,
         precioproducto, stockproducto, imgproducto} = req.body;
@@ -104,6 +114,7 @@ const putStockProductos = async (req, res) => {
 
 export{
     getProductos,
+    getProducto,
     postProductos,
     putProductos,
     deleteProductos,

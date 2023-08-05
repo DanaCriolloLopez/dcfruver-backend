@@ -99,6 +99,29 @@ const putEstadoPedido = async (req, res) => {
     }
 };
 
+const putEstadoRechazar = async (req, res) => {
+    const { idpedido } = req.params;
+
+    try {
+        // Buscar el pedido por su ID
+        const pedido = await Pedidos.findByPk(idpedido);
+
+        if (!pedido) {
+            return res.status(404).json({ mensaje: 'Pedido no encontrado' });
+        }
+
+        // Cambiar el estado del pedido a 'R' (Rechazado)
+        pedido.estado = 'R';
+
+        // Guardar los cambios en la base de datos
+        await pedido.save();
+
+        res.status(200).json({ mensaje: 'Estado del pedido rechazado', pedido });
+    } catch (error) {
+        res.status(400).json({ mensaje: error });
+    }
+};
+
 
 
 export{
@@ -107,7 +130,8 @@ export{
     putPedidos,
     deletePedidos,
     getPedidosPendientes,
-    putEstadoPedido
+    putEstadoPedido,
+    putEstadoRechazar
 }
 
 

@@ -9,6 +9,20 @@ const getPedidoDetalle = async (req, res) => {
     }
 }
 
+const getPedidoDetalleId = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const pedidoDetalle = await PedidoDetalle.findAll(
+            {
+                where: { idpedido: id } // Filtrar por pedidos con estado 'P' (Pendiente)
+            }
+        );    
+        res.status(200).json(pedidoDetalle);    
+    } catch (error) {
+        res.status(400).json({mensaje: error});
+    }
+}
+
 const postPedidoDetalle = async (req, res) => {
     const {idpedido, idproducto, cantidad,
         subtotal} = req.body;
@@ -63,7 +77,8 @@ export{
     getPedidoDetalle,
     postPedidoDetalle,
     putPedidoDetalle,
-    deletePedidoDetalle
+    deletePedidoDetalle,
+    getPedidoDetalleId
 }
 
 

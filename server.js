@@ -1,9 +1,17 @@
 import express from 'express';
 import router from './Routes/routes.js';
 import { sequelize } from "./Database/database.js";
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
 //Creo una instancia de express
 const app = express();
+
+// Middleware 
+app.use(cors());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 //Para aceptar solicitudes con formato json
 app.use(express.json());
